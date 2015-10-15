@@ -9,7 +9,7 @@ describe("Tests BDD", function() {
     temp.set_valor(-12.3);
     temp.set_tipo("C");
     var res = temp.celsius();
-    expect(res).to.equal("9.9 Farenheit, 260.8 Kelvin");
+    expect(res).to.equal('9.9 Farenheit, 260.8 Kelvin');
   });
 
   it("25e4k === 249726.9 Celsius, 449540.3 Farenheit", function() {
