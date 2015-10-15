@@ -63,7 +63,6 @@ function calculate(){
 
   if(m){
     m[1] = parseFloat(m[1]);
-
     var convertir = new Temperatura(0,0);
     convertir.set_tipo(m[2]);
     convertir.set_valor(m[1]);
