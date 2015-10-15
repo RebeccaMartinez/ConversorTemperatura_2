@@ -58,8 +58,9 @@ function calculate(){
   var result2;
   var final = 0;
   var temp = original.value;
-  var regexp = /(^[-+]?\d+(?:\.\d*)?)\s*([fFcCkK])/;
+  var regexp = /([+-]?\d+(?:\.\d*)?(?:\s*[eE]\d+)?)\s*([fFcCkK])/
   var m = temp.match(regexp);
+
   if(m){
     m[1] = parseFloat(m[1]);
 
