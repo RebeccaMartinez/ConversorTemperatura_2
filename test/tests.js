@@ -1,49 +1,54 @@
-var assert = chai.assert;
+var expect = chai.expect;
 
-suite('temperature', function() {
-    test('32F = 0.0 Celsius, 273.1 Kelvin', function() {
-        original.value = "32F";
-        calculate();
-        assert.deepEqual(converted.innerHTML, "0.0 Celsius, 273.1 Kelvin");
-    });
-    test('45C = 113.0 Farenheit, 318.1 Kelvin', function() {
-        original.value = "45C";
-        calculate();
-        assert.deepEqual(converted.innerHTML, "113.0 Farenheit, 318.1 Kelvin");
-    });
-    test('-5.4F = -20.8 Celsius, 252.4 Kelvin', function() {
-        original.value = "-5.4F";
-        calculate();
-        assert.deepEqual(converted.innerHTML, "-20.8 Celsius, 252.4 Kelvin");
-    });
-    test('78K = -195.1 Celsius, -319.3 Farenheit', function() {
-        original.value = "78K";
-        calculate();
-        assert.deepEqual(converted.innerHTML, "-195.1 Celsius, -319.3 Farenheit");
-    });
-    test('5e3K != 4.9 Celsius, 85e3.3 Farenheit', function() {
-        original.value = "5e3K";
-        calculate();
-        assert.notDeepEqual(converted.innerHTML, "46.9 Celsius, 640.3 Farenheit");
-    });
-    test('-2.3e4F = -12795.6 Celsius, -12522.4 Kelvin', function() {
-        original.value = "-2.3e4F";
-        calculate();
-        assert.deepEqual(converted.innerHTML, "-12795.6 Celsius, -12522.4 Kelvin");
-    });
-    test('Resultado == String', function() {
-       original.value = "-2.4K";
-       calculate();
-       assert.isString(converted.innerHTML);
-   });
-   test('Resultado != Null', function() {
-      original.value = "-3.6F";
-      calculate();
-      assert.isNotNull(converted.innerHTML);
+describe("Tests BDD", function() {
+
+
+  it("-12.3C === 9.9 Farenheit, 260.8 Kelvin", function() {
+    var temp = new Temperatura();
+    temp.set_valor(-12.3);
+    temp.set_tipo("C");
+    var res = temp.celsius();
+    expect(res).to.equal("9.9 Farenheit, 260.8 Kelvin");
   });
-    test('5X = error', function() {
-        original.value = "5X";
-        calculate();
-        assert.match(converted.innerHTML, /ERROR/);
+
+  it("25e4k === 249726.9 Celsius, 449540.3 Farenheit", function() {
+    var temp = new Temperatura();
+    temp.set_valor(25e4);
+    temp.set_tipo("k");
+    var res = temp.kelvin();
+    expect(res).to.equal("249726.9 Celsius, 449540.3 Farenheit");
+  });
+
+  it("32F === 0.0 Celsius, 273.1 Kelvin", function() {
+    var temp = new Temperatura();
+    temp.set_valor(32);
+    temp.set_tipo("F");
+    var res = temp.fahrenheit();
+    expect(res).to.equal("0.0 Celsius, 273.1 Kelvin");
+  });
+
+  it("18.3f !== 0.4 Celsius, 213.6 Kelvin", function() {
+    var temp = new Temperatura();
+    temp.set_valor(18.3);
+    temp.set_tipo("f");
+    var res = temp.fahrenheit();
+    expect(res).not.to.equal("0.4 Celsius, 213.6 Kelvin");
+  });
+
+
+  it("Resultado = 65.1", function() {
+    var temp = new Temperatura();
+    temp.set_valor(65.1);
+    temp.set_tipo("K");
+    expect(temp.get_valor()).to.equal(65.1);
+    expect(temp.get_tipo()).to.equal("K");
+  });
+
+  it("5X = ERROR", function() {
+       window.onload = function() {
+         var temp = new Temperatura(5,"X");
+         calculate();
+         expect(fin.innerHTML).to.match("/ERROR/");
+      }
     });
 });
