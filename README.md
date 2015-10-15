@@ -2,6 +2,6 @@
 
 En esta práctica se ha realiado un conversor de temperatura en javascript, usando clases y herencias. Además se han realizado tests usando mocha y chai.
 
-Enlace al conversor: [Conversor](http://rebeccamartinez.github.io/ConversorTemperatura/)
+Enlace al conversor: [Conversor](http://rebeccamartinez.github.io/ConversorTemperatura_2/)
 
 Enlace a mi Github page: [Rebecca] (http://rebeccamartinez.github.io/)
