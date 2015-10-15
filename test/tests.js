@@ -2,6 +2,7 @@ var expect = chai.expect;
 
 describe("Tests BDD", function() {
 
+   var aux = document.getElementById("converted");
 
   it("-12.3C === 9.9 Farenheit, 260.8 Kelvin", function() {
     var temp = new Temperatura();
@@ -43,6 +44,14 @@ describe("Tests BDD", function() {
     expect(temp.get_valor()).to.equal(65.1);
     expect(temp.get_tipo()).to.equal("K");
   });
+
+  it("32.4c === 90.3 Farenheit, 305.5 Kelvin", function() {
+     window.onload = function() {
+       var temp = new Temperatura();
+       var res = "90.3 Farenheit, 305.5 Kelvin";
+       expect(aux.innerHTML).to.equal("90.3 Farenheit, 305.5 Kelvin");
+     }
+   });
 
   it("5X = ERROR", function() {
        window.onload = function() {
