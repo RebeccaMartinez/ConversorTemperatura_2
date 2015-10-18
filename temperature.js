@@ -22,35 +22,45 @@ Medida.prototype.set_valor = function(valor) {
 }
 
 function Temperatura(){
+  Medida.call(this);
 }
 
 Temperatura.prototype = new Medida();
 
-/*Pasa los Celsius a Fahrenheit y Kelvin*/
-Temperatura.prototype.celsius = function() {
-  var result2 = this.get_valor() + 273.15;
-  var result1 = (this.get_valor() * 9/5)+32;
-  result1 = result1.toFixed(1)+" Farenheit"
-  result2 = result2.toFixed(1) + " Kelvin"
-  return result1 + ", " +result2;
-};
-
-/*Pasa los Fahrenheit a Celsius y Kelvin*/
-Temperatura.prototype.fahrenheit = function() {
+/* Pasa los Fahrenheit a Celsius*/
+Temperatura.prototype.fac = function(){
   var result1 = (this.get_valor() - 32)*5/9;
-  var result2 = result1 + 273.15;
-  result1 = result1.toFixed(1)+" Celsius"
-  result2 = result2.toFixed(1) + " Kelvin"
-  return result1 + ", " +result2;
+  return result1;
 };
 
-/*Pasa los Kelvin a Celsius y Fahrenheit*/
-Temperatura.prototype.kelvin = function() {
-  var result1 = this.get_valor() - 273.15;
-  var result2 = 1.8 * (this.get_valor() - 273.15) + 32;
-  result1 = result1.toFixed(1)+" Celsius"
-  result2 = result2.toFixed(1) + " Farenheit"
-  return result1 + ", " +result2;
+/* Pasa los Fahrenheit a Kelvin*/
+Temperatura.prototype.fak = function(){
+  var result1 = ((this.get_valor() - 32)*5/9) + 273.15;
+  return result1;
+};
+
+/* Pasa los celsius a Kelvin*/
+Temperatura.prototype.cak = function(){
+  var result1 = this.get_valor() + 273.15;
+  return result1;
+};
+
+/* Pasa los celsius a Fahrenheit*/
+Temperatura.prototype.caf = function(){
+  var result1 = (this.get_valor() * 9/5)+32;
+  return result1;
+};
+
+/*Pasa los Kelvin a Celsius*/
+Temperatura.prototype.kac = function(){
+  var result1 =  this.get_valor() - 273.15;
+  return result1;
+};
+
+/*Pasa los Kelvin a Fahrenheit*/
+Temperatura.prototype.kaf = function(){
+  var result1 =  1.8 * (this.get_valor() - 273.15) + 32;
+  return result1;
 };
 
 function calculate(){
@@ -65,13 +75,13 @@ function calculate(){
     convertir.set_tipo(m[2]);
     convertir.set_valor(m[1]);
     if(convertir.get_tipo() == 'c' || convertir.get_tipo() == 'C'){
-      final = convertir.celsius();
+      final = convertir.caf().toFixed(2) + " Fahrenheit" + ", " +convertir.cak().toFixed(2) + "Kelvin";
     }
     if(convertir.get_tipo() == 'f' || convertir.get_tipo() == 'F'){
-      final = convertir.fahrenheit();
+      final = convertir.fac().toFixed(2) + " Celsius" + ", " +convertir.fak().toFixed(2) + "Kelvin";
     }
     if(convertir.get_tipo() == 'k' || convertir.get_tipo() == 'K'){
-      final = convertir.kelvin();
+      final = convertir.kac().toFixed(2) + "Celsius" + ", " +convertir.kaf().toFixed(2) + "Fahrenheit";
     }
     document.getElementById("converted").setAttribute("col", "gr");
     converted.innerHTML = final;
